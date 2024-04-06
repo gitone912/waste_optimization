@@ -10,7 +10,7 @@
   }
 
   .main-box:hover {
-    background-color: lightblue; /* Change this to the color you desire */
+    background-color: lightblue; 
   }
 
   .coordinates-box {
@@ -58,7 +58,7 @@
 <br />
 
 <script>
-  // Function to get user's location and fill the latitude and longitude fields
+  
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(fillCoordinates, handleError);
@@ -67,7 +67,7 @@
     }
   }
 
-  // Callback function to fill latitude and longitude fields
+  
   function fillCoordinates(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
