@@ -23,4 +23,5 @@ urlpatterns = [
     path("tracking/", views.m, name="tracking"),
     path("camera_test", views.camera_test, name="camera_test"),
     path("upload_camera_v/", views.upload_camera_v, name="upload_camera_v"),
+    path("subscribed/", views.subscribed, name="subscribed"),
 ]

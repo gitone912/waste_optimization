@@ -115,7 +115,7 @@ def camera_v(request):  # sourcery skip: extract-method
         fm = camera()
     return render(request, "camera_v.html", {'form':fm,'data':data})
 
-def cvmap(request):  # sourcery skip: dict-comprehension, for-index-replacement, move-assign-in-block, remove-zero-from-range
+def cvmap(request): 
     lat_values = {}
     lng_values = {}
     locations = camera_vision.objects.all().values()
@@ -179,7 +179,8 @@ def distance(request):
     sys.stdout = sys.__stdout__
     data = pathlib.Path('app/arduino/new.txt').read_text()
     data = int(data)
-    percent = (data/100)*100
+    total = 100 # total
+    percent = (data/total)*total
     if request.method == "POST":
         fm = arduino_status(request.POST)
         if fm.is_valid():
@@ -190,7 +191,7 @@ def distance(request):
         fm = arduino_status()
     return render(request, "ultrasonic.html", {'form':fm,'obj':obj})
 
-def fill_update(request,pk):#bin  # sourcery skip: extract-method, move-assign
+def fill_update(request,pk):
     order = arduino.objects.get(id=pk)
     form = arduino_status(instance=order)
     data = pathlib.Path('app/arduino/new.txt').read_text()
@@ -204,7 +205,6 @@ def fill_update(request,pk):#bin  # sourcery skip: extract-method, move-assign
             obj.fill_img=percent
             obj.save()
             return redirect("ultrasonic")
-            #return render(request ,'new_bins.html',{'form': fm,'data':data})
     return render(request, 'update.html', {'form': form})
 
 def m(request):
@@ -233,3 +233,6 @@ def upload_camera_v(request):
             return redirect('camera_vision')
         return render(request,'not_a_waste.html')
     return render(request, 'upload_camera_v.html')
+
+def subscribed(request):
+    return render(request, 'subscribed.html')
