@@ -1,28 +1,54 @@
 {% extends 'home.html' %} 
 {% block body %}
-<br />
+<style>
+  .main-box {
+    width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid rgb(129, 122, 122);
+    transition: background-color 0.3s;
+  }
 
-<div class="col-md-4">
-  <div class="form-group">
-    <label>Fill out the data</label>
-    <form action="" method="POST" enctype="multipart/form-data" id="locationForm">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="image">Image:</label>
-        <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
-      </div>
-      <input type="hidden" name="latitude" id="latitude">
-      <input type="hidden" name="longitude" id="longitude">
-      <button type="button" class="btn btn-info" onclick="getLocation()">Get Location</button>
+  .main-box:hover {
+    background-color: lightblue; /* Change this to the color you desire */
+  }
+
+  .coordinates-box {
+    width: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+</style>
+<div class="main-box">
+  <br />
+  <h4><a href="{% url 'cvmap' %}" class="btn btn-info">Proceed to maps</a></h4>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Fill out the data</label>
+      <form action="" method="POST" enctype="multipart/form-data" id="locationForm">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="image">Image:</label>
+          <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
+        </div>
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <button type="button" class="btn btn-info" onclick="getLocation()">Get Location</button>
+        <br />
+        <br />
+        <input type="submit" value="Submit" class="btn btn-info btn-fill pull-right"/>
+      </form>
       <br />
-      <br />
-      <input type="submit" value="Submit" class="btn btn-info btn-fill pull-right"/>
-    </form>
-    <br />
+    </div>
+  </div>
+</div>
+
+<div class="coordinates-box">
     <div id="coordinates">
       Latitude: <span id="latitudeDisplay"></span><br>
       Longitude: <span id="longitudeDisplay"></span>
